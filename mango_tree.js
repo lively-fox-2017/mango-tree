@@ -62,10 +62,15 @@ class MangoTree {
 
   // Produce some mangoes
   produceMangoes() {
+    return this._fruits;
   }
 
   // Get some fruits
   harvest() {
+    let stats = Math.floor(Math.random() * this._fruits);
+    this._bad = this._fruits - stats;
+    this._quality = stats + ' good ' + this._bad + ' bad';
+    return this._quality;
   }
 
 }
@@ -105,3 +110,5 @@ console.log(mangga.getAge());
 console.log(mangga.getHeight());
 console.log(mangga.getFruits());
 console.log(mangga.getHealtyStatus());
+console.log(mangga.produceMangoes());
+console.log(mangga.harvest());

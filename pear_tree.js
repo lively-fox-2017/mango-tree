@@ -2,7 +2,7 @@
 
 let FruitTree = require('./fruit_tree.js');
 
-class MangoTree extends FruitTree {
+class PearTree extends FruitTree {
 
   constructor(name, heightIncrement, stoppedGrowingAt, startProducing, fruitsPerYear) {
 
@@ -12,4 +12,4 @@ class MangoTree extends FruitTree {
 
 }
 
-module.exports = MangoTree;
+module.exports = PearTree;

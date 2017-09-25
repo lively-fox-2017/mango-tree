@@ -2,7 +2,7 @@
 
 // Release 2
 class FruitTree {
-	constructor(fruit, nama, umur, tinggi, umurPertamaBerbuah, sehat){
+	constructor(nama, umur, tinggi, umurPertamaBerbuah, sehat, fruit){
 		this._fruit = fruit;
 		this._nama = nama;
 		this._umur = umur;
@@ -37,12 +37,16 @@ class FruitTree {
 		}
 		
 		this._umur++;
-		this._tinggi += Math.ceil(Math.random()*10);
+		this._tinggi += Math.ceil(Math.random()*5);
 	}
 
 	// Produce some mangoes
 	produceFruit() {
-		this._produksi = Math.floor(Math.random()*9)+2;
+		if(this._umur >= this._umurPertamaBerbuah){
+			this._produksi = Math.floor(Math.random()*9)+2;
+		}else{
+			this._produksi = "Belom berbuah";
+		}
 		
 		return this._produksi;
 	}
@@ -85,7 +89,7 @@ class Fruit {
 class MangoTree extends FruitTree {
   // Initialize a new MangoTree
   constructor(umur, tinggi, umurPertamaBerbuah, sehat) {
-	super(new Mango(), "MangoTree", umur, tinggi, umurPertamaBerbuah, sehat);
+	super("MangoTree", umur, tinggi, umurPertamaBerbuah, sehat, new Mango());
   }
 }
 
@@ -110,7 +114,7 @@ class Mango extends Fruit {
 // Release 1
 class AppleTree extends FruitTree {
   constructor(umur, tinggi, umurPertamaBerbuah, sehat) {
-	super(new Apple(), "AppleTree", umur, tinggi, umurPertamaBerbuah, sehat);
+	super("AppleTree", umur, tinggi, umurPertamaBerbuah, sehat, new Apple());
   }
 }
 
@@ -122,7 +126,7 @@ class Apple extends Fruit {
 
 class PearTree extends FruitTree {
   constructor(umur, tinggi, umurPertamaBerbuah, sehat) {
-	super(new Apple(), "AppleTree", umur, tinggi, umurPertamaBerbuah, sehat);
+	super("PearTree", umur, tinggi, umurPertamaBerbuah, sehat, new Pear());
   }
 }
 
@@ -135,41 +139,87 @@ class Pear extends Fruit {
 // Release 3
 class TreeGrove {
 	constructor(){
+		this._tree = [];
 	}
 	
 	inputTree(nama, umur, tinggi, umurPertamaBerbuah, sehat){
-		
+		if(nama === "MangoTree"){
+			return this._tree.push(new MangoTree(umur, tinggi, umurPertamaBerbuah, sehat));
+		}else if(nama === "AppleTree"){
+			return this._tree.push(new AppleTree(umur, tinggi, umurPertamaBerbuah, sehat));
+		}else if(nama === "PearTree"){
+			return this._tree.push(new PearTree(umur, tinggi, umurPertamaBerbuah, sehat));
+		}else{
+			return "Input tidak sesuai";
+		}
 	}
 	
 	show_ages(){
+		for (let i = 0; i < this._tree.length; i++){
+			console.log(this._tree[i]._nama+" berumur "+this._tree[i]._umur+" Tahun");
+		}
+		console.log("");
 	}
 	
 	show_trees(){
+		console.log(this._tree);
+		console.log("-------------------------");
 	}
 	
 	mature_trees(){
+		let str = "";
+		for (let i = 0; i < this._tree.length; i++){
+			if(this._tree[i]._umur >= this._tree[i]._umurPertamaBerbuah){
+				str += this._tree[i]._nama+" adalah pohon tua\n";
+			}
+		}
+		
+		if(str === ""){
+			console.log("Belom ada pohon yang tua\n");
+		}else{
+			console.log(str);
+		}
 	}
 	
 	dead_trees(){
+		let str = "";
+		for (let i = 0; i < this._tree.length; i++){
+			if(!this._tree[i]._sehat || this._tree[i]._umur > 20){
+				str += this._tree[i]._nama+" Telah Mati\n";
+			}
+		}
+		
+		if(str === ""){
+			console.log("Belom ada pohon yang mati\n");
+		}else{
+			console.log(str);
+		}
 	}
 }
 
 // let mangoTree = new MangoTree(0, 8, 7, true);
-let appletree = new AppleTree(0, 8, 7, true);
-console.log("The tree is alive! :smile:");
+// let appletree = new AppleTree(0, 1.8, 7, true);
+let treegrove = new TreeGrove();
+treegrove.inputTree("MangoTree", 21, 1.2, 5, true);
+treegrove.inputTree("PearTree", 7, 10, 7, true);
+treegrove.show_trees();
+treegrove.show_ages();
+treegrove.dead_trees();
+treegrove.mature_trees();
+// console.log("The tree is alive! :smile:");
 
 // while (mangoTree._sehat !== false) {
 	// mangoTree.grow();
 	// mangoTree.produceFruit();
 	// mangoTree.harvest();
-	// console.log("[ Year "+mangoTree._umur+" Report Height = "+mangoTree._tinggi+" | Fruits harvested = `"+mangoTree._produksi+" ("+mangoTree._kualitas[mangoTree._kualitas.length-1][0]+" good, "+mangoTree._kualitas[mangoTree._kualitas.length-1][1]+" bad)");
+	// console.log("[ Year "+mangoTree._umur+" Report Height = "+mangoTree._tinggi+" M | Fruits harvested = "+mangoTree._produksi+" ("+mangoTree._kualitas[mangoTree._kualitas.length-1][0]+" good, "+mangoTree._kualitas[mangoTree._kualitas.length-1][1]+" bad)");
 // }
-while (appletree._sehat !== false) {
-	appletree.grow();
-	appletree.produceFruit();
-	appletree.harvest();
-	console.log("[ Year "+appletree._umur+" Report Height = "+appletree._tinggi+" | Fruits harvested = `"+appletree._produksi+" ("+appletree._kualitas[appletree._kualitas.length-1][0]+" good, "+appletree._kualitas[appletree._kualitas.length-1][1]+" bad)");
-}
+// while (appletree._sehat !== false) {
+	// appletree.grow();
+	// appletree.produceFruit();
+	// appletree.harvest();
+	// console.log("[ Year "+appletree._umur+" Report Height = "+appletree._tinggi+" M | Fruits harvested = "+appletree._produksi+" ("+appletree._kualitas[appletree._kualitas.length-1][0]+" good, "+appletree._kualitas[appletree._kualitas.length-1][1]+" bad)");
+// }
 
-console.log("The tree has met its end. :sad:");
+// console.log("The tree has met its end. :sad:");
 

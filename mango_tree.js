@@ -32,13 +32,30 @@ class MangoTree {
     // Get current states here
 
     // Grow the tree
-    grow() {}
+    grow() {
+        let tahunMax = 20
+
+        for (let i = 1; i < tahunMax; i++) {
+            this._umur += 1
+            this._tinggi += Math.random() * 0.5
+            console.log(this._umur)
+            if (this._umur === tahunMax) {
+                return `pohonnya mati & tidak berbuah lagi`
+            } else {
+
+            }
+        }
+        console.log(`grow() Log: Year ${this._umur}`)
+        console.log(`grow() Log: Height = ${this._tinggi.toFixed(1)}`)
+    }
 
     // Produce some mangoes
     produceMangoes() {}
 
     // Get some fruits
-    harvest() {}
+    harvest() {
+
+    }
 
 }
 
@@ -81,7 +98,8 @@ mangoTree.getAge()
 mangoTree.getHeight()
 mangoTree.getFruits()
 mangoTree.getHealtyStatus()
-console.log(mangoTree.getHealtyStatus())
+mangoTree.grow()
+console.log(mangoTree.grow())
 
 // do {
 //     mangoTree.grow();

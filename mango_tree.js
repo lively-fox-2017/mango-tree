@@ -78,8 +78,8 @@ class Fruits {
 class MangoTree extends FruitTree{
 // umurTree, tinggiTree, umurTreeKetikaPertamaKaliBerbuah, healthyStatus
   // Initialize a new MangoTree
-  constructor(umur = 0,tinggi = 0,sehat = true, nama = 'Mango') {
-    super(umur,tinggi,sehat,nama)
+  constructor() {
+    super()
     this.umur_mati_buah = 10
     this.maxbuah = 13
   }
@@ -94,8 +94,8 @@ class MangoTree extends FruitTree{
 
 // // Release 1
 class AppleTree extends FruitTree{
-    constructor(umur = 0,tinggi = 0,sehat = true, nama = 'Apel'){
-      super(umur,tinggi,sehat,nama)
+    constructor(){
+      super()
         this.umur_mati_buah = 6
         this.maxbuah = 12
     }
@@ -110,8 +110,8 @@ class AppleTree extends FruitTree{
 }
 
 class PearTree extends FruitTree{
-    constructor(umur = 0,tinggi = 0,sehat = true, nama = 'Pear'){
-      super(umur,tinggi,sehat,nama)
+    constructor(){
+      super()
         this.umur_mati_buah = 15
         this.maxbuah = 8
         this.maxAge = 8

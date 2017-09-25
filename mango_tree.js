@@ -105,85 +105,6 @@ class MangoTree extends FruitTree {
     super.produceFruits( Mango);
   }
 }
-// class MangoTree {
-//
-//   // Initialize a new MangoTree
-//   constructor(age, height, maxCapacity, healthyStatus) {
-//     this.age = age;
-//     this.height = height;
-//     this.maxCapacity = maxCapacity;
-//     this.availableFruits = [];
-//     this.harvestedFruits = [];
-//     this.healthyStatus = true;
-//   }
-//
-//   getAge() {
-//     return this.age;
-//   }
-//   getHeight() {
-//     return this.height;
-//   }
-//   getFruits() {
-//     return this.availableFruits;
-//   }
-//   getHealtyStatus() {
-//     return this.healthyStatus;
-//   }
-//
-//   randomNumberGenerator(max) {
-//     let rng = Math.round(Math.random()*max-1)+1;
-//     return rng
-//   }
-//   randomPenambahanTinggi(max) {
-//     let rng = Math.round(Math.random()*max-1)+1;
-//     return rng;
-//   }
-//   // Get current states here
-//
-//   // Grow the tree
-//   grow() {
-//     this.age += 1;
-//     if (this.age<20){
-//       this.height += this.randomNumberGenerator(15);
-//     }
-//     if (this.age>=30){
-//       this.healthyStatus =  false;
-//     }
-//   }
-//
-//   // Produce some mangoes
-//   produceMangoes() {
-//     let random = this.randomNumberGenerator(this.maxCapacity)
-//     let buah = new Mango();
-//     for(let i = 0; i<random; i++){
-//       this.availableFruits.push(buah);
-//       buah = new Mango();
-//     }
-//   }
-//
-//   harvested(){
-//     let result = ''+this.harvestedFruits.length;
-//     let goodCounter = 0;
-//     let badCounter = 0;
-//     for (let i =0; i<this.harvestedFruits.length; i++){
-//       if (this.harvestedFruits[i].quality=='good'){
-//         goodCounter++;
-//       }else{
-//         badCounter++;
-//       }
-//     }
-//     result+= ` (${goodCounter} good, ${badCounter} bad)`
-//     //console.log(result);
-//     return result;
-//   }
-//
-//   // Get some fruits
-//   harvest() {
-//     this.harvestedFruits = this.availableFruits;
-//     this.availableFruits = [];
-//   }
-//
-// }
 
 class Mango extends Fruit{
   // Produce a mango
@@ -238,15 +159,6 @@ do {
 } while (mangoTree.healthyStatus != false)
 
 
-// Release 1
-// class AppleTree {}
-// class Apple {}
-
-// Release 2
-//class FruitTree {}
-//class Fruit {}
-
-// Release 3
 class TreeGrove {
   constructor(){
     this.trees=[];

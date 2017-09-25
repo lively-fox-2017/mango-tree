@@ -81,17 +81,18 @@ class Mango {
   }
 }
 
-/**
-  * driver code untuk release 0
-  * let mangoTree = new MangoTree()
-  * do {
-  *   mangoTree.grow();
-  *   mangoTree.produceMangoes();
-  *   mangoTree.harverst();
-  *   console.log(`[Year ${tree._age} Report] Height = ${tree._height} | Fruits harvested = ${tree._harvested}`)
-  * } while (mangoTree.healthyStatus != false)
-  */
-//
+// * driver code untuk release 0
+let mangoTree = new MangoTree(1, 1.3, 5, true)
+do {
+  mangoTree.grow();
+  mangoTree.produceMangoes();
+  mangoTree.harvest();
+  console.log('[Year '+ mangoTree.getAge() + ' Report] Height = ' + mangoTree.getHeight() + ' | Fruits harvested = ' + mangoTree.harvest());
+  //   console.log(`[Year '+mangoTree.getAge() Report] Height = ${this._height} | Fruits harvested = ${tree._harvested}`)
+} while (mangoTree.getHealtyStatus() != false);
+// console.log(mangoTree.getAge());
+
+
 // // Release 1
 // class AppleTree {}
 // class Apple {}
@@ -103,12 +104,12 @@ class Mango {
 // // Release 3
 // class TreeGrove {}
 
-let mangga = new MangoTree(1, 1.3, 5, true);
-mangga.grow()
-
-console.log(mangga.getAge());
-console.log(mangga.getHeight());
-console.log(mangga.getFruits());
-console.log(mangga.getHealtyStatus());
-console.log(mangga.produceMangoes());
-console.log(mangga.harvest());
+// let mangga = new MangoTree(1, 1.3, 5, true);
+// mangga.grow()
+//
+// console.log(mangga.getAge());
+// console.log(mangga.getHeight());
+// console.log(mangga.getFruits());
+// console.log(mangga.getHealtyStatus());
+// console.log(mangga.produceMangoes());
+// console.log(mangga.harvest());

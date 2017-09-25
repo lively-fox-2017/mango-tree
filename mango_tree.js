@@ -2,7 +2,7 @@
 
 // release 0
 
-class MangoTree {
+class FruitTree {
 
   // Initialize a new MangoTree
   constructor() {
@@ -12,7 +12,7 @@ class MangoTree {
     this._kumpulanbuah = 0
     this._harvested = 0
     this._healthyStatus = true
-    this.quality = new Mango()
+    this.quality = new Fruit()
   }
 
   getAge() {
@@ -66,7 +66,7 @@ class MangoTree {
 
 }
 
-class Mango {
+class Fruit {
   // Produce a mango
   constructor() {
     this.good = 0
@@ -96,30 +96,84 @@ class Mango {
 // Release 3
 //class TreeGrove {}
 
-var mangoTree = new MangoTree()
-
-do {
-   mangoTree.grow();
-   //mangoTree.produceMangoes();
-   //mangoTree.harvest();
-   console.log(`[Year ${mangoTree._age} Report] Height = ${mangoTree._height.toFixed(2)} | Fruits harvested = ${mangoTree._harvested} (${mangoTree.quality.good} good, ${mangoTree.quality.bad} bad)`)
-   console.log(mangoTree.status())
- } while (mangoTree._healthyStatus != false)
-
-
-
-class AppleTree extends MangoTree {
+class AppleTree extends FruitTree {
   constructor() {
     super()
     this.quality = new Apple()
   }
+  grow() {
+    if(this._age < 40) {
+      this._age++
+      this._height = this._height + Math.random()
+      if(this._age >= 20) {
+        this.produceMangoes()
+        this.harvest()
+      }
+
+    }
+  }
+
+  status() {
+    if(this._age == 40) {
+      this._healthyStatus = false
+      return 'pohon tetangga telah tiada'
+    }
+    else {
+      return ''
+    }
+  }
 }
 
-console.log('================================================================');
-
-class Apple extends Mango {
+class Apple extends Fruit {
   constructor() {
     super()
+    this.nama = 'apel'
+  }
+}
+
+class MangoTree extends FruitTree {
+  constructor() {
+    super()
+    this.quality = new Mango()
+  }
+}
+
+class Mango extends Fruit {
+  constructor() {
+    super()
+    this.nama = 'Mango'
+  }
+}
+
+class PearTree extends FruitTree {
+  constructor() {
+    super()
+    this.quality = new Pear()
+  }
+
+  grow() {
+    if(this._age < 30) {
+      this._age++
+      this._height = this._height + Math.random()
+      this.produceMangoes()
+      this.harvest()
+    }
+  }
+  status() {
+    if(this._age == 30) {
+      this._healthyStatus = false
+      return 'pohon tetangga telah tiada'
+    }
+    else {
+      return ''
+    }
+  }
+}
+
+class Pear extends Fruit {
+  constructor() {
+    super()
+    this.nama = 'Pear'
   }
 }
 
@@ -127,8 +181,26 @@ var apelmalam = new AppleTree()
 
 do {
    apelmalam.grow();
-   //mangoTree.produceMangoes();
-   //mangoTree.harvest();
-   console.log(`[Year ${apelmalam._age} Report] Height = ${apelmalam._height.toFixed(2)} | Fruits harvested = ${apelmalam._harvested} (${apelmalam.quality.good} good, ${apelmalam.quality.bad} bad)`)
+   console.log(`[Year ${apelmalam._age} Report] Height = ${apelmalam._height.toFixed(2)} | ${apelmalam.quality.nama} harvested = ${apelmalam._harvested} (${apelmalam.quality.good} good, ${apelmalam.quality.bad} bad)`)
    console.log(apelmalam.status())
  } while (apelmalam._healthyStatus != false)
+
+ var mangoTree = new MangoTree()
+
+ do {
+    mangoTree.grow();
+    //mangoTree.produceMangoes();
+    //mangoTree.harvest();
+    console.log(`[Year ${mangoTree._age} Report] Height = ${mangoTree._height.toFixed(2)} | ${mangoTree.quality.nama} harvested = ${mangoTree._harvested} (${mangoTree.quality.good} good, ${mangoTree.quality.bad} bad)`)
+    console.log(mangoTree.status())
+  } while (mangoTree._healthyStatus != false)
+
+  var pear = new PearTree()
+
+  do {
+     pear.grow();
+     //mangoTree.produceMangoes();
+     //mangoTree.harvest();
+     console.log(`[Year ${pear._age} Report] Height = ${pear._height.toFixed(2)} | ${pear.quality.nama} harvested = ${pear._harvested} (${pear.quality.good} good, ${pear.quality.bad} bad)`)
+     console.log(pear.status())
+   } while (pear._healthyStatus != false)

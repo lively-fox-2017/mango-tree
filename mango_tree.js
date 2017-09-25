@@ -180,10 +180,11 @@ class TreeGrove {
   nextYear(){
     for (let i = 0; i < this._arrTree.length; i++){
       this._arrTree[i]._age++
-      this._arrTree[i]._fruits = Math.floor((Math.random() * this._arrTree[i]._maxFruits) + 1);
-      if (this._arrTree[i]._age <= this._arrTree[i]._stopGrow) {
-        let num = Math.round(Math.random() * 20) / 100
-        this._arrTree[i]._height += num
+      let num = Math.round(Math.random() * 20) / 100
+      this._arrTree[i]._height += num
+      if (this._arrTree[i]._age >= this._arrTree[i]._firstTimeGrow) {
+        this._arrTree[i]._fruits = Math.floor((Math.random() * this._arrTree[i]._maxFruits) + 1);
+        
       }
       if (this._arrTree[i]._age === this._arrTree[i]._maxAge) {
         this._arrTree[i]._health = false;
@@ -212,8 +213,8 @@ class TreeGrove {
   matureTree(){
     let pohon=[]
     for (let i = 0; i < this._arrTree.length; i++){
-      if(this._arrTree[i]._health === true){
-        pohon.push(`Pohon yang masih hidup ${this._arrTree[i]._name}`)
+      if(this._arrTree[i]._age >= this._arrTree[i]._firstTimeGrow){
+        pohon.push(`Pohon yang sudah berbuah ${this._arrTree[i]._name}`)
       }
     }
     return pohon
@@ -232,9 +233,9 @@ class TreeGrove {
 }
 
 let kebun = new TreeGrove()
-kebun.inputTree('MangoTree', 10, 0.8, 3, true)
-kebun.inputTree('AppleTree', 10, 0.5, 5, true)
-kebun.inputTree('PearTree', 10, 0.5, 7, true)
+kebun.inputTree('MangoTree', 2, 0.8, 3, true)
+kebun.inputTree('AppleTree', 4, 0.5, 5, true)
+kebun.inputTree('PearTree', 5, 0.5, 7, true)
 
 
 console.log(kebun._arrTree)

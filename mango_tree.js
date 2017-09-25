@@ -6,12 +6,14 @@ class MangoTree {
 
   // Initialize a new MangoTree
   constructor(age, height, fruits, health) {
+    this._name = 'MangoTree';
     this._age = age;
     this._height = height;
     this._maxFruit = Math.ceil(Math.random() * 15);
     this._fruits = fruits;
     this._produce = 0;
     this._health = true;
+    this._mature = false;
     this._addHeight = Math.floor((Math.random() * (5 - 1)) + 10) / 10;
     this.mature = 3;
     this.maxAge = 20;
@@ -75,9 +77,12 @@ class MangoTree {
 
 }
 
-class Mango {
+class Mango extends MangoTree {
   // Produce a mango
   constructor() {
+    super();
+    this.maxAge = 10;
+
   }
 }
 
@@ -93,16 +98,140 @@ do {
 // console.log(mangoTree.getAge());
 
 
-// // Release 1
-// class AppleTree {}
-// class Apple {}
-//
-// // Release 2
-// class FruitTree {}
-// class Fruit {}
-//
-// // Release 3
-// class TreeGrove {}
+// Release 1
+class AppleTree {
+  constructor(age, height, fruits, health) {
+    this._name = 'AppleTree';
+    this._age = age;
+    this._height = height;
+    this._maxFruit = Math.ceil(Math.random() * 15);
+    this._fruits = fruits;
+    this._produce = 0;
+    this._health = true;
+    this._mature = false;
+    this._addHeight = Math.floor((Math.random() * (5 - 1)) + 10) / 10;
+    this.mature = 3;
+    this.maxAge = 20;
+    this.maxGrow = 15;
+    this.maxHeight = 6.5;
+
+  }
+}
+class Apple extends AppleTree {
+  constructor() {
+    super();
+    this.maxAge = 10;
+  }
+}
+
+class PearTree {
+  constructor(age, height, fruits, health) {
+    this._name = 'PearTree';
+    this._age = age;
+    this._height = height;
+    this._maxFruit = Math.ceil(Math.random() * 15);
+    this._fruits = fruits;
+    this._produce = 0;
+    this._health = true;
+    this._mature = false;
+    this._addHeight = Math.floor((Math.random() * (5 - 1)) + 10) / 10;
+    this.mature = 3;
+    this.maxAge = 20;
+    this.maxGrow = 15;
+    this.maxHeight = 6.5;
+
+  }
+}
+class Pear extends PearTree {
+  constructor() {
+    super();
+    this.maxAge = 10;
+  }
+}
+
+// Release 2
+class FruitTree {
+  constructor(age, height, fruits, health) {
+    this._age = age;
+    this._height = height;
+    this._maxFruit = Math.ceil(Math.random() * 15);
+    this._fruits = fruits;
+    this._produce = 0;
+    this._health = true;
+    this._addHeight = Math.floor((Math.random() * (5 - 1)) + 10) / 10;
+    this.mature = 3;
+    this.maxAge = 20;
+    this.maxGrow = 15;
+    this.maxHeight = 6.5;
+
+  }
+}
+
+class Fruit extends FruitTree {
+  constructor() {
+    super();
+    this.maxAge = 10;
+  }
+}
+
+// Release 3
+class TreeGrove {
+  constructor() {
+    this._trees = [];
+  }
+
+  inputTree(tree, age, height, fruits, health) {
+    if (tree === 'AppleTree') {
+      let pohon = new AppleTree(age, height, fruits, health);
+      this._trees.push(pohon);
+    } else if (tree === 'PearTree') {
+      let pohon = new PearTree(age, height, fruits, health);
+      this._trees.push(pohon);
+    } else if (tree === 'MangoTree') {
+      let pohon = new MangoTree(age, height, fruits, health);
+      this._trees.push(pohon);
+    } else {
+      console.log('tree not defined yet');
+    }
+  }
+
+  show_ages() {
+    for (let i = 0; i < this._trees.length; i++) {
+      console.log(this._trees[i]._name + ' sudah berumur ' + this._trees[i]._age);
+    }
+  }
+
+  show_trees() {
+    for (let i = 0; i < this._trees.length; i++) {
+      console.log(this._trees[i]);
+    }
+  }
+
+  mature_trees() {
+    for (let i = 0; i < this._trees.length; i++) {
+      if (this._trees[i]._age >= this._trees[i].mature) {
+        console.log(this._trees[i]._name + ' sudah bisa berbuah');
+      }
+    }
+  }
+
+  dead_trees() {
+    for (let i = 0; i < this._trees.length; i++) {
+      if (this._trees[i]._health === false)
+        console.log(this._trees[i]._name + ' sudah mati');
+    }
+  }
+}
+
+let grove = new TreeGrove();
+grove.inputTree('MangoTree', 3, 4.5, 5, true);
+grove.inputTree('PearTree', 7, 4.2, 15, true);
+grove.inputTree('AppleTree', 4, 6.8, 10, true);
+
+grove.show_ages();
+grove.show_trees();
+grove.mature_trees();
+grove.dead_trees();
 
 // let mangga = new MangoTree(1, 1.3, 5, true);
 // mangga.grow()

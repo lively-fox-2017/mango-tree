@@ -1,18 +1,27 @@
 "use strict"
 
+// Release 2
+class FruitTree {
+  constructor(){
+    this.age = 0
+    this.heigth = Math.floor((Math.random()*500)+150)
+    this.fruitsCap = 0
+    this.harvested = []
+    this.fruitHealth = true 
+  }
+
+}
+class Fruit {}
+
+
 // release 0
 
-class MangoTree {
+class MangoTree extends FruitTree {
 
   // Initialize a new MangoTree
   constructor() {
     //umur, tinggi, kapasitas, grup, done, health
-    this._age = 0
-    this._heigth = Math.floor((Math.random()*500)+150)
-    this.fruitsCap = 0
-    this._harvested = []
-    this.fruitDone = 0 
-    this.fruitHealth = true
+    super()    
   }
 
   getAge() {
@@ -25,9 +34,11 @@ class MangoTree {
     }
     return this.heigth
   }
+
   getFruits() {
     return this.fruitGroup
   }
+
   getHealtyStatus() {
     return this.fruitHealth
   }
@@ -37,13 +48,11 @@ class MangoTree {
 
   // Grow the tree
   grow() {
-    let limitAge = 15
-    let endAge = 20
-    this._age+= 1
-    if(this._age<15){
-      this._heigth+=Math.floor((Math.random()*60)+20)
+    this.age+= 1
+    if(this.age<15){
+      this.heigth+=Math.floor((Math.random()*60)+20)
     }else
-      if(this._age===20){
+      if(this.age===20){
         this.healthyStatus=false
       }
 
@@ -93,16 +102,11 @@ class Mango {
   */
 
 // Release 1
-class AppleTree {
+class AppleTree extends FruitTree {
     // Initialize a new AppleTree
   constructor() {
     //umur, tinggi, kapasitas, grup, done, health
-    this._age = 0
-    this._heigth = Math.floor((Math.random()*500)+150)
-    this.fruitsCap = 0
-    this._harvested = []
-    this.fruitDone = 5000 
-    this.fruitHealth = true
+    super()
   }
 
   getAge() {
@@ -128,11 +132,11 @@ class AppleTree {
   // Grow the tree
   grow() {
     
-    this._age+= 1
-    if(this._age<10){
-      this._heigth+=Math.floor((Math.random()*60)+20)
+    this.age+= 1
+    if(this.age<10){
+      this.heigth+=Math.floor((Math.random()*60)+20)
     }else
-      if(this._age===15){
+      if(this.age===15){
         this.healthyStatus=false
       }
 
@@ -163,9 +167,7 @@ class AppleTree {
 }
 class Apple {}
 
-// Release 2
-class FruitTree {}
-class Fruit {}
+
 
 // Release 3
 class TreeGrove {}
@@ -177,7 +179,7 @@ while(tree.healthyStatus != false){
   tree.grow()
   tree.produceMangoes()
   tree.harvest()
-  console.log('[Year ' +tree._age+' Report] Height = '+tree._heigth+' | Fruits harvested = '+tree.fruitsCap+'('+tree.fruitGroup[1]+' good, '+tree.fruitGroup[0]+' bad)')
+  console.log('[Year ' +tree.age+' Report] Height = '+tree.heigth+' | Fruits harvested = '+tree.fruitsCap+'('+tree.fruitGroup[1]+' good, '+tree.fruitGroup[0]+' bad)')
   a++
 }
 
@@ -189,7 +191,7 @@ while(tree1.healthyStatus != false){
   tree1.grow()
   tree1.produceMangoes()
   tree1.harvest()
-  console.log('[Year ' +tree1._age+' Report] Height = '+tree1._heigth+' | Fruits harvested = '+tree1.fruitsCap+'('+tree1.fruitGroup[1]+' good, '+tree1.fruitGroup[0]+' bad)')
+  console.log('[Year ' +tree1.age+' Report] Height = '+tree1.heigth+' | Fruits harvested = '+tree1.fruitsCap+'('+tree1.fruitGroup[1]+' good, '+tree1.fruitGroup[0]+' bad)')
 }
 
 console.log('The tree has met its end :((((((((((')

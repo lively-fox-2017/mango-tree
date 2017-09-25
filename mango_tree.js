@@ -72,7 +72,7 @@ class Mango {
 }
 
 let mangoTree = new MangoTree();
-
+console.log('\n\n Pertumbuhan buah Mango\n');
 do {
   mangoTree.grow();
   mangoTree.produceFruits();
@@ -87,6 +87,10 @@ class AppleTree extends FruitTree {
   growApple() {
     this._umur += 0.5;
     if (this._umur <= 5) {
+      this._tinggi += 50;
+      // this.harvest()=this.panen;
+    } else
+    if (this._umur < 10) {
       this.produceFruits();
       this.harvest();
     } else {
@@ -97,6 +101,7 @@ class AppleTree extends FruitTree {
 }
 class Apple {}
 let appleTree = new AppleTree();
+console.log('\n\n Pertumbuhan buah Apple\n');
 do {
   appleTree.growApple();
   appleTree.harvest();
@@ -123,9 +128,10 @@ class PeerTree extends FruitTree {
 
 }
 
-let peerTree = new AppleTree();
+let peerTree = new PeerTree();
+console.log('\n\n Pertumbuhan buah Peer\n');
 do {
-  peerTree.growApple();
+  peerTree.growPeer();
   peerTree.harvest();
   console.log(`[Year ${peerTree._umur} Report] Height = ${peerTree._tinggi.toFixed(2)} cm | Fruits harvested = ${peerTree.harvest()}`)
 } while (peerTree.healthyStatus != false);

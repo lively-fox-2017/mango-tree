@@ -11,7 +11,7 @@ class MangoTree {
         this._maxBuah = 0
         this._buahReady = 0
         this._jmlhBuah_petik = 0
-        this._sehat = new Mango()
+        this._sehat = true
 
     }
 
@@ -33,28 +33,48 @@ class MangoTree {
 
     // Grow the tree
     grow() {
-        let tahunMax = 20
+        // let tahunMax = 20
 
-        for (let i = 1; i < tahunMax; i++) {
-            this._umur += 1
-            this._tinggi += Math.random() * 0.5
-            console.log(this._umur)
-            if (this._umur === tahunMax) {
-                return `pohonnya mati & tidak berbuah lagi`
-            } else {
+        // for (let i = 1; i < tahunMax; i++) {
+        //     this._umur += 1
+        //     this._tinggi += (Math.random() * 0.5)
+        //         // console.log(this._umur)
+        //     if (this._umur === tahunMax) {
+        //         return `pohonnya mati & tidak berbuah lagi`
+        //     } else {
 
-            }
+        //     }
+        // }
+        // console.log(`grow() Log: Year ${this._umur}`)
+        // console.log(`grow() Log: Height = ${this._tinggi.toFixed(1)}`)
+        // return this._umur
+        if (this._umur < 20) {
+            this._umur++
+                this._tinggi += Math.random()
+            this.produceMangoes()
+            this.harvest()
         }
-        console.log(`grow() Log: Year ${this._umur}`)
-        console.log(`grow() Log: Height = ${this._tinggi.toFixed(1)}`)
     }
 
     // Produce some mangoes
-    produceMangoes() {}
+    produceMangoes() {
+        this._buahReady = Math.floor(Math.random() * 2 + 3)
+    }
 
     // Get some fruits
     harvest() {
+        this._jmlhBuah_petik += Math.floor(Math.random() * (129) + 8)
+        this._qBaik = Math.floor(this._jmlhBuah_petik * Math.random()) + 1
+        this._qTdkBaik = this._jmlhBuah_petik - this._qBaik
+        console.log(this._jmlhBuah_petik)
+        return `${this._jmlhBuah_petik} ${this._qBaik} Good, ${this._qTdkBaik} Bad`
+    }
 
+    status() {
+        if (this._umur === 20) {
+            this._sehat = false
+            return `pohon telah menua dan tidak berbuah lagi`
+        }
     }
 
 }
@@ -94,18 +114,22 @@ console.log(`The tree is alive! :smile:`)
 
 let mangoTree = new MangoTree()
 
-mangoTree.getAge()
-mangoTree.getHeight()
-mangoTree.getFruits()
-mangoTree.getHealtyStatus()
-mangoTree.grow()
-console.log(mangoTree.grow())
+// mangoTree.getAge()
+// mangoTree.getHeight()
+// mangoTree.getFruits()
+// mangoTree.getHealtyStatus()
 
-// do {
-//     mangoTree.grow();
-//     mangoTree.produceMangoes();
-//     mangoTree.harvest();
-//     console.log(`[Year ${tree._age} Report] Height= ${tree._height} | Fruits harvested = ${tree._harvestes}`)
-// } while (mangoTree.getHealtyStatus() != false)
+// mangoTree.grow()
+// mangoTree.harvest()
+console.log(mangoTree.grow())
+console.log(mangoTree.harvest())
+
+do {
+    mangoTree.grow();
+    mangoTree.produceMangoes();
+    mangoTree.harvest();
+    mangoTree.status()
+    console.log(`[Year ${mangoTree._umur} Report] Height= ${mangoTree._tinggi} | Fruits harvested = ${mangoTree._jmlhBuah_petik}`)
+} while (mangoTree.getHealtyStatus() != false)
 
 console.log(`The tree has met its end. :sad:`)

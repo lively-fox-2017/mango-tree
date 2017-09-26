@@ -328,26 +328,35 @@ class TreeGrove {
         mangoFruit._ageHarvest = harverst;
         mangoFruit._healty = healty;
         this._tree.push(mangoFruit)
+        mangoFruit.grow()
+        mangoFruit.produceFruit();
+        mangoFruit.harverst();
         return this._tree
       break;
       case 'AppleTree':
-        let appleFruit = new AppleTree()
+        let appleFruit = new AppleFruit()
         appleFruit._fruit_name = name;
         appleFruit._age = age;
         appleFruit._height = height;
         appleFruit._ageHarvest = harverst;
         appleFruit._healty = healty;
         this._tree.push(appleFruit)
+        appleFruit.grow()
+        appleFruit.produceFruit();
+        appleFruit.harverst();
         return this._tree
       break;
       case 'PearTree':
-        let pearFruit = new AppleTree()
+        let pearFruit = new PearFruit()
         pearFruit._fruit_name = name;
         pearFruit._age = age;
         pearFruit._height = height;
         pearFruit._ageHarvest = harverst;
         pearFruit._healty = healty;
         this._tree.push(pearFruit)
+        pearFruit.grow()
+        pearFruit.produceFruit();
+        pearFruit.harverst();
         return this._tree
       break;
     }
@@ -358,7 +367,6 @@ class TreeGrove {
     })
   }
   next_year() {
-    // console.log(this.arrPohon);
     this._tree.forEach(i=>{
       i._age += 1
       if(i._age != i._maxAge){
@@ -376,13 +384,13 @@ class TreeGrove {
   }
   show_tress() {
     this._tree.forEach(i=>{
-      console.log(i._fruit_name+' now height is '+i._height)      
+      console.log(i._fruit_name+' now height is '+i._height+' meter')      
     })
   }
   mature_trees() {
     console.log('This fruits now :');
     this._tree.forEach(i=>{
-      console.log(i._fruit_name+' have fruits '+i._fruit)
+      console.log(i._fruit_name+' have fruits '+i._fruit.length)
     })
   }
   dead_trees() {
@@ -403,11 +411,10 @@ class TreeGrove {
 
 // Driver code
 let grove = new TreeGrove();
-grove.inputTree('ManggoTree',3,1.8,7,true)
-grove.inputTree('ManggoTree',5,2.4,12,true)
+grove.inputTree('MangoTree',3,1.8,7,true)
+grove.inputTree('MangoTree',5,2.4,12,true)
 grove.inputTree('AppleTree',4,1.2,5,true)
 grove.inputTree('PearTree',7,2,15,true)
-
 grove.next_year();
 grove.show_ages();
 grove.show_tress();
